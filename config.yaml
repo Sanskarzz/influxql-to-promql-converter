@@ -1,33 +1,6 @@
-log_level: # optional default is INFO
-datasource:
 importer:
-  grafana:
-    endpoint:
-    api_token:
-  folder:
-    path:  # relative or full path
-processor:
-  replace_metrics_names:
-    - name: # metric to be replaced
-      value: # new metric name
-  find_metrics_names:
-    metrics_auth: # Currently only m3db is supported
-      metrics_db_endpoint: # Path to base API i.e: localhost:9090/api/v1
-      metrics_basic_auth:
-        username:
-        password:
-      metrics_oauth_header:
-        key:
-        value:
-    replace_strategy:
-      strategies: [ 'statistic_combination' , 'permutation' ] # optional
-      min_match_percent:  # min percent for result match 1-100
-      min_filter_percent:  # threshold for combination matching 1-100
+  file:
+    path: influx_data.lp
 exporter:
-  grafana:
-    endpoint: # grafana api url i.e: https://<<username>>.grafana.net
-    auth_header:
-      key:
-      value:
-  folder:
-    path: # relative or full path
+  prometheus:
+    endpoint: http://localhost:9090/api/v1/write
